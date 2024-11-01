@@ -15,17 +15,17 @@
 /* Increasing this value might help with CPU usage at the cost of lower
  * responsiveness. */
 #define LV_TICK_RATE 20
-    
+
 /* Default screen dimensions */
-#define LV_HOR_RES_MAX          (480)
-#define LV_VER_RES_MAX          (320)
+#define LV_HOR_RES_MAX          (1024)
+#define LV_VER_RES_MAX          (600)
 
 //////////////////////////////////////////////////////////////////////////////
 
 STATIC pthread_t mp_thread;
 
 STATIC mp_obj_t mp_lv_task_handler(mp_obj_t arg)
-{  
+{
     lv_task_handler();
     return mp_const_none;
 }
@@ -68,7 +68,7 @@ STATIC void mp_lv_main_loop(void)
 static void handle_sigusr1(int signo)
 {
     // Let the signal pass. blocking function would return E_INTR.
-    // This would cause a call to "mp_handle_pending" even when 
+    // This would cause a call to "mp_handle_pending" even when
     // waiting for user input.
     // See https://github.com/micropython/micropython/pull/5723
 }
@@ -158,7 +158,7 @@ STATIC const mp_rom_map_elem_t SDL_globals_table[] = {
         { MP_ROM_QSTR(MP_QSTR_mouse_read), MP_ROM_PTR(&PTR_OBJ(mouse_read))},
         { MP_ROM_QSTR(MP_QSTR_keyboard_read), MP_ROM_PTR(&PTR_OBJ(keyboard_read))},
 };
-         
+
 
 STATIC MP_DEFINE_CONST_DICT (
     mp_module_SDL_globals,
